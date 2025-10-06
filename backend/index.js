@@ -23,9 +23,11 @@ app.use(cors({
 // All routes
 const authRoutes = require('./src/users/user.route');
 const productsRoutes = require('./src/products/products.route');
+const reviewRoutes = require('./src/reviews/reviews.router')
 
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productsRoutes)
+app.use('/api/reviews', reviewRoutes)
 
 main()
   .then(() => console.log("mongodb is successfully connected."))
@@ -35,7 +37,7 @@ main()
   await mongoose.connect(process.env.DB_URL);
 
   app.get("/", (req, res) => {
-    res.send("Lebaba E-commerce Server is running....!");
+    res.send("Style E-commerce Server is running....!");
   });
 }
 

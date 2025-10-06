@@ -17,7 +17,7 @@ const productsApi = createApi({
         maxPrice,
         page = 1,
         limit = 10,
-      }) => {
+      }={}) => {
         const queryParams = new URLSearchParams({
           category: category || "",
           color: color || "",

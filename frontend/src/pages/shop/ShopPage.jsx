@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import productsData from '../../data/products.json';
+import { useState } from 'react';
+// import productsData from '../../data/products.json';
 import ProductCards from './ProductCards';
 import ShopFiltering from './ShopFiltering';
 import { useFetchAllProductsQuery} from '../../redux/feature/products/productsApi'
