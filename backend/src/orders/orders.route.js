@@ -24,8 +24,8 @@ router.post("/create-checkout-session", async (req,res) => {
         payment_method_types: ['card'],
         line_items:lineItems ,
         mode: 'payment' ,
-        success_url: `http://localhost:5173/success?session_id={CHECKOUT_SESSION_ID}`,
-        cancel_url: `http://localhost:5173/cancel`,
+        success_url: `https://style-ecom-frontend.vercel.app/success?session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `https://style-ecom-frontend.vercel.app/cancel`,
     })
 
    res.json({ url: session.url })
