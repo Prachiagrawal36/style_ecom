@@ -1,3 +1,4 @@
 export const getBaseUrl = () =>{
-    return "https://vercel.com/prachis-projects-5c20da83/style-ecom-backend";
+    return "https://style-ecom-backend.vercel.app";
+   
 }
