@@ -37,7 +37,7 @@ const OrderSummary = () => {
   const session = await response.json();
   console.log("Session:", session);
 
-  // 🚀 Redirect to Stripe Checkout (new method)
+  //  Redirect to Stripe Checkout 
   window.location.href = session.url;
 };
 

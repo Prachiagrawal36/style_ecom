@@ -8,7 +8,7 @@ router.post("/post-review", async (req, res) => {
   try {
     const { comment, rating, productId, userId } = req.body;
 
-    if (!comment || !rating || !productId || !userId) {
+    if (!comment || !rating === undefined || !productId || !userId) {
       return res.status(400).send({ message: "All fields are required" });
     }
     const existingReview = await Reviews.findOne({ productId, userId });

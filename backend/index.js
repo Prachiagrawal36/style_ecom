@@ -20,16 +20,38 @@ app.use(cors({
   })
 );
 
+//image upload
+const uploadImage = require('./src/utils/uploadImage')
+
+app.post("/uploadImage", async (req, res) => {
+  try {
+    if (!req.body.image) {
+      return res.status(400).json({ error: "Image is missing" });
+    }
+
+    const url = await uploadImage(req.body.image);
+    return res.json(url);
+
+  } catch (err) {
+    console.error("Cloudinary Upload Error:", err);
+    return res.status(500).json({ error: err.message || "Upload failed" });
+  }
+});
+
+
 // All routes
 const authRoutes = require('./src/users/user.route');
 const productsRoutes = require('./src/products/products.route');
 const reviewRoutes = require('./src/reviews/reviews.router')
 const orderRoutes = require('./src/orders/orders.route')
+const statsRoutes = require('./src/stats/stats.route')
 
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productsRoutes)
 app.use('/api/reviews', reviewRoutes)
 app.use('/api/orders', orderRoutes)
+app.use('/api/stats', statsRoutes)
+
 
 main()
   .then(() => console.log("mongodb is successfully connected."))
@@ -42,6 +64,7 @@ main()
     res.send("Style E-commerce Server is running....!");
   });
 }
+
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);

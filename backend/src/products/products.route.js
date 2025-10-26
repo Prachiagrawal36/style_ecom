@@ -1,4 +1,5 @@
 const express = require("express");
+const mongoose = require("mongoose");
 const Products = require("./products.model");
 const Reviews = require("../reviews/reviews.model");
 const verifyToken = require("../middleware/verifyToken");
@@ -82,6 +83,10 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const productId = req.params.id;
+    //validate MongoDB ID
+    if (!mongoose.Types.ObjectId.isValid(productId)) {
+      return res.status(400).send({ message: "Invalid product ID" });
+    }
     const product = await Products.findById(productId).populate(
       "author",
       "email username"

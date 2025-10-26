@@ -17,8 +17,16 @@ const PostAReview = ({isModalOpen, handleClose}) => {
         setRating(value)
     }
 
+    // console.log({ comment, rating, userId: user?._id, productId: id });
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        //validation check
+         if (!comment || rating <= 0 || !user?._id || !id) {
+        alert("Please fill all fields and select a rating!");
+        return;
+    }
         const newComment = {
             comment: comment,
             rating: rating,

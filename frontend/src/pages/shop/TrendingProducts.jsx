@@ -1,12 +1,18 @@
 
 import { useState } from 'react'
 import ProductCards from './ProductCards'
-import products from '../../data/products.json'
+// import products from '../../data/products.json'
+import { useFetchAllProductsQuery } from '../../redux/feature/products/productsApi';
 
 const TrendingProducts = () => {
-    const [visibleProducts, setVisibleProducts] = useState(8);
-    const loadMoreProducts = () =>{
-    setVisibleProducts(prevCount => prevCount + 4)
+        const [visibleProducts, setVisibleProducts] = useState(8);
+        const { data: { products = [] } = {}, isLoading } = useFetchAllProductsQuery({ limit: 8 });
+
+        const loadMoreProducts = () =>{
+        setVisibleProducts(prevCount => prevCount + 4)
+
+        if (isLoading) return <p>Loading...</p>;
+
     }
   return (
     <section className ='section__container product__container'>
