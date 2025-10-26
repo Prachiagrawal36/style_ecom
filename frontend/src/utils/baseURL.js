@@ -1,3 +1,3 @@
 export const getBaseUrl = () =>{
-    return "http://localhost:8000";
+    return "https://vercel.com/prachis-projects-5c20da83/style-ecom-backend";
 }
